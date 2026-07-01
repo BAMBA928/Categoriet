@@ -1,5 +1,5 @@
 <?php
-//1
+//1  la categorie1 2produit  categaorie2 pas de produit
 $categories = [
     0 => [
         "nom" => "CategorieA",
@@ -15,14 +15,15 @@ $categories = [
         "produits" => []
     ]
 ];
-//2
+//2 afficher tous les produits qui n'ont pas de  produits
 foreach ($categories as $categorie) {
     if (empty($categorie["produits"])) {
         var_dump($categorie);
     }
 }
 
-//3
+//3 Enregistrer une nouvelle categorie action 1 saisir le code action 2 saisir le nom mais tous obligatoir et unique les produit sont initialiser à tableau vide
+
 
 $codeExiste = true;
 do {
@@ -63,7 +64,8 @@ $categorie = [
     "produits" => []
 ];
 
-//4
+//4 ajouter un produit à une categorie action 1 recherche le categorie par code ;action 2 saisir les informations du produit et l'affecté à la trouvé NB: lors de la saisie du produit la refernce et le nom sont obligatoir et uniQUE prix et qte sont positif
+
 $catExiste = false;
 $code = readline("Enter le code :");
 foreach ($categories as $index => $categorie) {
@@ -97,12 +99,12 @@ do {
         echo "le champ est obligatoire !! \n";
         $codeExiste = false;
     } else {
-        foreach ($categorie["produits"] as $produit) {
-            if ($produit["nom"] === $nom) {
-                $codeExiste = false;
-                echo "ce nom existe deja ...\n";
-            }
-        }
+       foreach ($categorie["produits"] as $produit) {
+    if ($produit["nom"] === $nom) {
+        $codeExiste = false;
+        echo "ce nom existe deja ...\n";
+    }
+}
     }
 } while (!$codeExiste);
 
@@ -110,18 +112,18 @@ do {
 
 
 
-if ($categorieExiste) {
+if ($catExiste) {
     $produit = [
         "nom" => $nom,
         "reference" => $reference,
         "prix" => (int) readline("Enter  le prix : "),
-        "quantite" => (int) readline("Enter la quantité : ")
+        "qte" => (int) readline("Enter la quantité : ")
     ];
     $categories[$index]["produits"][] = $produit;
 } else {
     echo "cette categorie n'existe pas !!";
 }
-//5 
+//5  on ajoute une categorie en lui affectant des produits tantque utlisateur repond oui à la question  voulez vous ajouter 
 
 
 do {
@@ -166,7 +168,7 @@ do {
         "nom" => readline("Enter le nom : "),
         "reference" => readline("Enter la reference : "),
         "prix" => (int) readline("Enter le prix : "),
-        "quantite" => (int) readline("Enter la quantité : ")
+        "qte" => (int) readline("Enter la quantité : ")
     ];
     $produits[] = $produit;
 
